@@ -23,8 +23,11 @@ const ConfigContextProvider = (props) => {
   const setFirstMove = (selectedUser) => {
     setConfig({ ...config, firstMove: selectedUser });
   }
+  const restoreConfigToInit = () => {
+    setConfig({ firstMove: 'user', n: 0, m: 0 });
+  }
   return (
-    <ConfigContext.Provider value={{ config, incrementDecrementOption, setFirstMove }}>
+    <ConfigContext.Provider value={{ config, incrementDecrementOption, setFirstMove, restoreConfigToInit }}>
       {props.children}
     </ConfigContext.Provider>
   );

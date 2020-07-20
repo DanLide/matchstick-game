@@ -1,9 +1,12 @@
 import React, {useContext} from "react";
-import {ConfigContext} from "../contexts/ConfigContext";
-import {incrementDecrementOptions} from "../utils/incrementDecrementOptions";
+import {ConfigContext} from "../../contexts/ConfigContext";
+import {incrementDecrementOptions} from "../../utils/incrementDecrementOptions";
+import { useHistory } from "react-router-dom";
 
 const GameConfig = () => {
   const { config, incrementDecrementOption, setFirstMove } = useContext(ConfigContext);
+  let history = useHistory();
+
   const decrementNButton = config.n > 0 ? (
     <button onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_N)}>-</button>
   ) : (
@@ -14,6 +17,12 @@ const GameConfig = () => {
   ) : (
     <button disabled>-</button>
   );
+  const startGameButton = config.n > 0 && config.m > 0 && config.n >= config.m ? (
+    <button className='game-start' onClick={() => history.push('/start/')}>Start the game</button>
+  ) : (
+    <button className='game-start' disabled>Start the game</button>
+  );
+
   return (
     <div className='game-config'>
       <h2>Choose your destiny</h2>
@@ -36,6 +45,7 @@ const GameConfig = () => {
           <option value='ai'>AI</option>
         </select>
       </div>
+      {startGameButton}
     </div>
   );
 }
