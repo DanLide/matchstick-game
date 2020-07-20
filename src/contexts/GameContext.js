@@ -2,14 +2,17 @@ import React, {createContext, useState} from "react";
 
 export const GameContext = createContext();
 
+const initState = {
+  matchsticksAmount: 0,
+  matchsticksPerMove: 0,
+  matchsticksForCurrentMove: 0,
+  player: '',
+}
+
 const GameContextProvider = (props) => {
-  const [gameData, setGameData] = useState({
-    matchsticksAmount: 0,
-    matchsticksPerMove: 0,
-    player: '',
-  });
+  const [gameData, setGameData] = useState(initState);
   const restoreGameDataToInit = () => {
-    setGameData({ matchsticksAmount: 0, matchsticksPerMove: 0, player: '' });
+    setGameData(initState);
   }
   return (
     <GameContext.Provider value={{ gameData, setGameData, restoreGameDataToInit }}>
