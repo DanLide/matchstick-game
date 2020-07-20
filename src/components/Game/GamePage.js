@@ -5,6 +5,7 @@ import {GameContext} from "../../contexts/GameContext";
 import {ConfigContext} from "../../contexts/ConfigContext";
 import ExitGame from "./ExitGame";
 import {useHistory} from "react-router-dom";
+import GameStatus from "./GameStatus";
 
 const GamePage = () => {
   const { setGameData } = useContext(GameContext);
@@ -20,6 +21,7 @@ const GamePage = () => {
     <div className='game-page'>
       <Header />
       <Matchstick />
+      <GameStatus />
       <ExitGame />
     </div>
   );
