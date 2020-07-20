@@ -32,8 +32,8 @@ const GameConfig = () => {
       </div>
       <div>
         <p>Choose who moves first</p>
-        <select name='firstMove' onChange={ (e) => setFirstMove(e.target.value) }>
-          <option value='user' selected>User</option>
+        <select name='firstMove' defaultValue='user' onChange={ (e) => setFirstMove(e.target.value) }>
+          <option value='user'>User</option>
           <option value='ai'>AI</option>
         </select>
       </div>

@@ -8,16 +8,16 @@ import GamePage from "./components/Game/GamePage";
 
 function App() {
   return (
-    <div className="App">
+    <ConfigContextProvider>
       <GameContextProvider>
-        <ConfigContextProvider>
+        <div className="App">
           <Router>
             <Route exact path='/' component={ConfigPage}/>
             <Route exact path='/start/' component={GamePage} />
           </Router>
-        </ConfigContextProvider>
+        </div>
       </GameContextProvider>
-    </div>
+    </ConfigContextProvider>
   );
 }
 
