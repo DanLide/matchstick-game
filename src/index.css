@@ -24,3 +24,7 @@ code {
 .matchstick-list img {
   width: 100%;
 }
+
+header {
+  margin-bottom: -20px;
+}

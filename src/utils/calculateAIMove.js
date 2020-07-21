@@ -1,36 +1,33 @@
-const calculateAIMove = (matchsticksAmount, matchsticksPerMove, aiScore, localMatchsticksPerMove = 1) => {
+const calculateAIMove = (matchsticksAmount, matchsticksPerMove, aiScore, currentMove = 0) => {
   if (matchsticksPerMove % 2 === 0) {
     if (aiScore % 2 === 0) {
-      while (localMatchsticksPerMove <= matchsticksPerMove) {
-        const remainder = matchsticksAmount - localMatchsticksPerMove;
+      while (currentMove <= matchsticksPerMove ) {
+        currentMove += 1;
+        const remainder = matchsticksAmount - currentMove;
         if (remainder % 6 === 0 || remainder % 6 === 1) {
-          return localMatchsticksPerMove;
+          return currentMove;
         }
-        localMatchsticksPerMove += 1;
       }
+      return currentMove;
     } else {
-      while (localMatchsticksPerMove <= matchsticksPerMove) {
-        const remainder = matchsticksAmount - localMatchsticksPerMove;
+      while (currentMove <= matchsticksPerMove) {
+        currentMove += 1;
+        const remainder = matchsticksAmount - currentMove;
         if (remainder % 6 === 5) {
-          return localMatchsticksPerMove;
+          return currentMove;
         }
-        if (remainder < 5) {
-          if (remainder % 6 === 0 || remainder % 6 === 1) {
-            return localMatchsticksPerMove;
-          }
-        }
-        localMatchsticksPerMove += 1;
       }
+      return currentMove;
     }
   } else {
-    while (localMatchsticksPerMove <= matchsticksPerMove) {
-      const remainder = matchsticksAmount - localMatchsticksPerMove;
+    while (currentMove <= matchsticksPerMove) {
+      currentMove += 1;
+      const remainder = matchsticksAmount - currentMove;
       if (remainder % 4 === 0 || remainder % 4 === 1) {
-        return localMatchsticksPerMove;
+        return currentMove;
       }
-
-      localMatchsticksPerMove += 1;
     }
+    return currentMove;
   }
 }
 

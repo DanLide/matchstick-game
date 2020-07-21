@@ -1,9 +1,10 @@
 import React from "react";
+import logo from '../../assets/images/logo.png';
 
 const Header = () => {
   return (
     <header>
-      <h1>Matchstick-game</h1>
+      <img src={ logo } alt='logo' />
     </header>
   );
 }

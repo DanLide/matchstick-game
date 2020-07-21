@@ -17,7 +17,7 @@ const GameConfig = () => {
 
   return (
     <div className='game-config'>
-      <h2>Choose your destiny</h2>
+      <h3>Choose your destiny</h3>
       <div>
         <p>Set n option</p>
         {decrementNButton}

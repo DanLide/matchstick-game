@@ -35,21 +35,24 @@ const GameContextProvider = (props) => {
     }
   }
   const makeMove = () => {
+    const { matchsticksAmount, matchsticksPerMove, matchsticksForCurrentMove, userScore, aiScore } = gameData;
     if (gameData.player === 'user') {
       setGameData({
         ...gameData,
-        matchsticksAmount: gameData.matchsticksAmount - gameData.matchsticksForCurrentMove,
-        userScore: gameData.userScore + gameData.matchsticksForCurrentMove,
-        player: gameData.matchsticksAmount - gameData.matchsticksForCurrentMove > 0 ? 'ai' : 'user',
+        matchsticksAmount: matchsticksAmount - matchsticksForCurrentMove,
+        userScore: userScore + matchsticksForCurrentMove,
+        player: matchsticksAmount - matchsticksForCurrentMove > 0 ? 'ai' : 'user',
         matchsticksForCurrentMove: 0,
       });
     } else {
-      // We want to do AI move in one render, that's why we store matchsticks number in a local variable
-      const matchsticksForAIMove = calculateAIMove(gameData.matchsticksAmount, gameData.matchsticksPerMove, gameData.aiScore);
+      const matchsticksPerMoveForAI = matchsticksAmount > matchsticksPerMove ?
+        matchsticksPerMove : matchsticksAmount;
+      // We want to do AI move in one render, that's why we store matchsticks number as a local variable
+      const matchsticksForAIMove = calculateAIMove(matchsticksAmount, matchsticksPerMoveForAI, aiScore);
       setGameData({
         ...gameData,
-        matchsticksAmount: gameData.matchsticksAmount - matchsticksForAIMove,
-        aiScore: gameData.aiScore + matchsticksForAIMove,
+        matchsticksAmount: matchsticksAmount - matchsticksForAIMove,
+        aiScore: aiScore + matchsticksForAIMove,
         player: 'user',
         matchsticksForCurrentMove: 0,
       });
