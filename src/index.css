@@ -12,13 +12,15 @@ code {
     monospace;
 }
 
-.matchstick {
+.matchstick-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  list-style-type: none;
+  padding: 0;
 }
 
-.matchstick img {
-  width: 300px;
+.matchstick-list img {
+  width: 100%;
 }

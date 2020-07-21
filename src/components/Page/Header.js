@@ -1,15 +1,9 @@
-import React, {useContext} from "react";
-import {GameContext} from "../../contexts/GameContext";
+import React from "react";
 
 const Header = () => {
-  const { gameData } = useContext(GameContext);
-  const matchsticksCount = gameData.matchsticksPerMove !== 0 ? (
-    <span>{`x${gameData.matchsticksAmount}`}</span>
-  ) : undefined;
   return (
     <header>
       <h1>Matchstick-game</h1>
-      {matchsticksCount}
     </header>
   );
 }

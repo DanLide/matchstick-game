@@ -4,15 +4,23 @@ import {GameContext} from "../../contexts/GameContext";
 
 const Matchstick = () => {
   const { gameData } = useContext(GameContext);
-  const { matchsticksAmount } = gameData;
-  const matchstickWidth = 200/matchsticksAmount > 10 ? 10 : 250/matchsticksAmount;
+  const { matchsticksAmount, matchstickWidth } = gameData;
   const matchsticks = [];
   for (let i = 0; i < matchsticksAmount; i++) {
-    matchsticks.push(<img src={ matchstick }  alt='matchstick' style={{ width: `${ matchstickWidth }%` }} key={i} />);
+    matchsticks.push(
+      <li className='matchstick-list-item' style={{ width: `${ matchstickWidth }%` }} key={i} >
+        <img src={ matchstick }  alt='matchstick' />
+      </li>
+    );
   }
   return (
     <div className='matchstick'>
-      {matchsticks}
+      <div className='matchstick-counter'>
+        <span>{`x${gameData.matchsticksAmount}`}</span>
+      </div>
+      <ul className='matchstick-list'>
+        {matchsticks}
+      </ul>
     </div>
   );
 }

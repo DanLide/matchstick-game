@@ -4,7 +4,7 @@ import calculateAIMove from "../utils/calculateAIMove";
 
 export const GameContext = createContext();
 
-const initState = {
+const initGameState = {
   matchsticksAmount: 0,
   matchsticksPerMove: 0,
   matchsticksForCurrentMove: 0,
@@ -14,16 +14,17 @@ const initState = {
 }
 
 const GameContextProvider = (props) => {
-  const [gameData, setGameData] = useState(initState);
+  const [gameData, setGameData] = useState(initGameState);
   const restoreGameDataToInit = () => {
-    setGameData(initState);
+    setGameData(initGameState);
   }
   const loadConfig = (config) => {
     setGameData({
-      ...initState,
+      ...initGameState,
       matchsticksAmount: 2*config.n + 1,
       matchsticksPerMove: config.m,
-      player: config.firstMove
+      matchstickWidth: 200/(2*config.n + 1) > 10 ? 10 : 250/(2*config.n + 1),
+      player: config.firstMove,
     });
   }
   const incrementDecrementOption = (option) => {
@@ -44,7 +45,7 @@ const GameContextProvider = (props) => {
       });
     } else {
       // We want to do AI move in one render, that's why we store matchsticks number in a local variable
-      const matchsticksForAIMove = calculateAIMove(gameData.matchsticksAmount, gameData.matchsticksPerMove);
+      const matchsticksForAIMove = calculateAIMove(gameData.matchsticksAmount, gameData.matchsticksPerMove, gameData.aiScore);
       setGameData({
         ...gameData,
         matchsticksAmount: gameData.matchsticksAmount - matchsticksForAIMove,
