@@ -11,7 +11,7 @@ const MoveConfig = () => {
   ) : (
     <button disabled>-</button>
   );
-  const incrementMoveButton = matchsticksForCurrentMove <= matchsticksPerMove
+  const incrementMoveButton = matchsticksForCurrentMove < matchsticksPerMove
     && player === 'user'
     && matchsticksForCurrentMove < matchsticksAmount ? (
     <button onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_CURRENT_MOVE)}>+</button>

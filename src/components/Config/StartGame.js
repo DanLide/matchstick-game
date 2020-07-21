@@ -14,9 +14,9 @@ const StartGame = () => {
   }
 
   return config.n > 0 && config.m > 0 && config.n >= config.m ? (
-    <button className='game-start' onClick={startGame}>Start the game</button>
+    <button className='game-start' onClick={startGame}>Start a new game</button>
   ) : (
-    <button className='game-start' disabled>Start the game</button>
+    <button className='game-start' disabled>Start a new game</button>
   );
 }
 
