@@ -36,22 +36,28 @@ const MatchsticksParams = () => {
           Set n option
         </Typography>
         <div>
-          <Tooltip title="Remove" aria-label="remove">
-            {config.n > 0 ? (
-              <Button className={classes.addRemoveButton} variant='contained' onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_N)}>
+          {config.n > 0 ? (
+            <Tooltip title="Remove" aria-label="remove">
+              <Button
+                className={classes.addRemoveButton}
+                variant='contained'
+                onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_N)}>
                 <RemoveIcon />
               </Button>
-            ) : (
-              <Button className={classes.addRemoveButton} variant='contained' disabled>
-                <RemoveIcon />
-              </Button>
-            )}
-          </Tooltip>
+            </Tooltip>
+          ) : (
+            <Button className={classes.addRemoveButton} variant='contained' disabled>
+              <RemoveIcon />
+            </Button>
+          )}
           <Typography className={classes.counter} variant="body1" component="span" align="center">
             { config.n }
           </Typography>
           <Tooltip title="Add" aria-label="add">
-            <Button className={classes.addRemoveButton} variant='contained' onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_N)}>
+            <Button
+              className={classes.addRemoveButton}
+              variant='contained'
+              onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_N)}>
               <AddIcon />
             </Button>
           </Tooltip>
@@ -62,22 +68,28 @@ const MatchsticksParams = () => {
           Set m option
         </Typography>
         <div>
-          <Tooltip title="Remove" aria-label="remove">
-            {config.m > 0 ? (
-              <Button className={classes.addRemoveButton} variant='contained' onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_M)}>
+          {config.m > 0 ? (
+            <Tooltip title="Remove" aria-label="remove">
+              <Button
+                className={classes.addRemoveButton}
+                variant='contained'
+                onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_M)}>
                 <RemoveIcon />
               </Button>
-            ) : (
-              <Button className={classes.addRemoveButton} variant='contained' disabled>
-                <RemoveIcon />
-              </Button>
-            )}
-          </Tooltip>
+            </Tooltip>
+          ) : (
+            <Button className={classes.addRemoveButton} variant='contained' disabled>
+              <RemoveIcon />
+            </Button>
+          )}
           <Typography className={classes.counter} variant="body1" component="span" align="center">
             { config.m }
           </Typography>
           <Tooltip title="Add" aria-label="add">
-            <Button className={classes.addRemoveButton} variant='contained' onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_M)}>
+            <Button
+              className={classes.addRemoveButton}
+              variant='contained'
+              onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_M)}>
               <AddIcon />
             </Button>
           </Tooltip>

@@ -34,39 +34,39 @@ const MoveConfig = () => {
         Set matchsticks number for current move
       </Typography>
       <div>
-        <Tooltip title="Remove" aria-label="remove">
-          {matchsticksForCurrentMove > 0 && player === 'user' ? (
+        {matchsticksForCurrentMove > 0 && player === 'user' ? (
+          <Tooltip title="Remove" aria-label="remove">
             <Button
               className={classes.addRemoveButton}
               variant='contained'
               onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_CURRENT_MOVE)}>
               <RemoveIcon />
             </Button>
-          ) : (
-            <Button className={classes.addRemoveButton} variant='contained' disabled>
-              <RemoveIcon />
-            </Button>
-          )}
-        </Tooltip>
+          </Tooltip>
+        ) : (
+          <Button className={classes.addRemoveButton} variant='contained' disabled>
+            <RemoveIcon />
+          </Button>
+        )}
         <Typography className={classes.counter} variant="body1" component="span" align="center">
           { matchsticksForCurrentMove }
         </Typography>
-        <Tooltip title="Add" aria-label="add">
-          {matchsticksForCurrentMove < matchsticksPerMove
-          && player === 'user'
-          && matchsticksForCurrentMove < matchsticksAmount ? (
+        {matchsticksForCurrentMove < matchsticksPerMove
+        && player === 'user'
+        && matchsticksForCurrentMove < matchsticksAmount ? (
+          <Tooltip title="Add" aria-label="add">
             <Button
               className={classes.addRemoveButton}
               variant='contained'
               onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_CURRENT_MOVE)}>
               <AddIcon />
             </Button>
-          ) : (
-            <Button className={classes.addRemoveButton} variant='contained' disabled>
-              <AddIcon />
-            </Button>
-          )}
-        </Tooltip>
+          </Tooltip>
+        ) : (
+          <Button className={classes.addRemoveButton} variant='contained' disabled>
+            <AddIcon />
+          </Button>
+        )}
       </div>
     </div>
   );
