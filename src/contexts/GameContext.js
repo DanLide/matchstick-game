@@ -23,7 +23,7 @@ const GameContextProvider = (props) => {
       ...initGameState,
       matchsticksAmount: 2*config.n + 1,
       matchsticksPerMove: config.m,
-      matchstickWidth: 150/(2*config.n + 1) > 6 ? 6 : 150/(2*config.n + 1),
+      matchstickWidth: 150/(2*config.n + 1) > 5 ? 6 : 200/(2*config.n + 1),
       player: config.firstMove,
     });
   }
