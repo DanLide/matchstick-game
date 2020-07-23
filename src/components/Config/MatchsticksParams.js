@@ -33,7 +33,7 @@ const MatchsticksParams = () => {
     <React.Fragment>
       <div className={classes.configContainer}>
         <Typography className={classes.hint} variant="body1" gutterBottom>
-          Set n option
+          Set n option (2n + 1 matches in a pile)
         </Typography>
         <div>
           {config.n > 0 ? (
@@ -65,7 +65,7 @@ const MatchsticksParams = () => {
       </div>
       <div className={classes.configContainer}>
         <Typography className={classes.hint} variant="body1" gutterBottom>
-          Set m option
+          Set limit per move (m option)
         </Typography>
         <div>
           {config.m > 0 ? (
