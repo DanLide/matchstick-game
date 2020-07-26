@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
+import {resetConfig} from "../../actions/configActions";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -16,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
 const ExitGame = () => {
   const classes = useStyles();
   let history = useHistory();
-  const { restoreConfigToInit } = useContext(ConfigContext);
+  const { dispatch, initConfig } = useContext(ConfigContext);
   const { restoreGameDataToInit } = useContext(GameContext);
 
   const exitGame = () => {
-    restoreConfigToInit();
+    dispatch(resetConfig(initConfig));
     restoreGameDataToInit();
     history.push('/')
   }
