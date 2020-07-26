@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import { useHistory } from "react-router-dom";
-import {ConfigContext} from "../../contexts/ConfigContext";
 import {GameContext} from "../../contexts/GameContext";
 import {makeStyles} from "@material-ui/core/styles";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import {resetConfig} from "../../actions/configActions";
+import {resetGameState} from "../../actions/gameActions";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -17,12 +17,11 @@ const useStyles = makeStyles((theme) => ({
 const ExitGame = () => {
   const classes = useStyles();
   let history = useHistory();
-  const { dispatch, initConfig } = useContext(ConfigContext);
-  const { restoreGameDataToInit } = useContext(GameContext);
+  const { dispatchConfig, initConfig, dispatchGame, initGameState } = useContext(GameContext);
 
   const exitGame = () => {
-    dispatch(resetConfig(initConfig));
-    restoreGameDataToInit();
+    dispatchConfig(resetConfig(initConfig));
+    dispatchGame(resetGameState(initGameState));
     history.push('/')
   }
 

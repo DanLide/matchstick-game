@@ -6,9 +6,8 @@ import {GameContext} from "../../contexts/GameContext";
 import StartGame from "../Config/StartGame";
 
 const GameController = () => {
-  const { gameData } = useContext(GameContext);
-  const { matchsticksAmount } = gameData;
-  return matchsticksAmount > 0 ? (
+  const { gameState } = useContext(GameContext);
+  return gameState.matchsticksAmount > 0 ? (
     <div className='game-controller'>
       <GameStatus />
       <MoveConfig />

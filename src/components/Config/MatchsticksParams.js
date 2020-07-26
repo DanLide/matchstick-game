@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import {ConfigContext} from "../../contexts/ConfigContext";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from '@material-ui/icons/Add';
@@ -7,6 +6,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import Button from '@material-ui/core/Button';
 import {makeStyles} from "@material-ui/core/styles";
 import {decrementM, decrementN, incrementM, incrementN} from "../../actions/configActions";
+import {GameContext} from "../../contexts/GameContext";
 
 const useStyles = makeStyles((theme) => ({
   counter: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MatchsticksParams = () => {
   const classes = useStyles();
-  const { config, dispatch } = useContext(ConfigContext);
+  const { config, dispatchConfig } = useContext(GameContext);
   return (
     <React.Fragment>
       <div className={classes.configContainer}>
@@ -41,7 +41,7 @@ const MatchsticksParams = () => {
               <Button
                 className={classes.addRemoveButton}
                 variant='contained'
-                onClick={() => dispatch(decrementN())}>
+                onClick={() => dispatchConfig(decrementN())}>
                 <RemoveIcon />
               </Button>
             </Tooltip>
@@ -57,7 +57,7 @@ const MatchsticksParams = () => {
             <Button
               className={classes.addRemoveButton}
               variant='contained'
-              onClick={() => dispatch(incrementN())}>
+              onClick={() => dispatchConfig(incrementN())}>
               <AddIcon />
             </Button>
           </Tooltip>
@@ -73,7 +73,7 @@ const MatchsticksParams = () => {
               <Button
                 className={classes.addRemoveButton}
                 variant='contained'
-                onClick={() => dispatch(decrementM())}>
+                onClick={() => dispatchConfig(decrementM())}>
                 <RemoveIcon />
               </Button>
             </Tooltip>
@@ -89,7 +89,7 @@ const MatchsticksParams = () => {
             <Button
               className={classes.addRemoveButton}
               variant='contained'
-              onClick={() => dispatch(incrementM())}>
+              onClick={() => dispatchConfig(incrementM())}>
               <AddIcon />
             </Button>
           </Tooltip>

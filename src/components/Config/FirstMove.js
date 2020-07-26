@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import {ConfigContext} from "../../contexts/ConfigContext";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from "@material-ui/core/Typography";
 import {setFirstMove} from "../../actions/configActions";
+import {GameContext} from "../../contexts/GameContext";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FirstMove = () => {
   const classes = useStyles();
-  const { dispatch } = useContext(ConfigContext);
+  const { dispatchConfig } = useContext(GameContext);
   return (
     <React.Fragment>
       <Typography variant="body1" gutterBottom>
@@ -27,7 +27,7 @@ const FirstMove = () => {
           labelId="user-select-label"
           id="user-select"
           defaultValue='user'
-          onChange={ (e) => dispatch(setFirstMove(e.target.value)) }
+          onChange={ (e) => dispatchConfig(setFirstMove(e.target.value)) }
         >
           <MenuItem value='user'>User</MenuItem>
           <MenuItem value='ai'>AI</MenuItem>

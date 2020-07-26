@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Matchstick = () => {
   const classes = useStyles();
-  const { gameData } = useContext(GameContext);
-  const { matchsticksAmount, matchstickWidth } = gameData;
+  const { gameState } = useContext(GameContext);
+  const { matchsticksAmount, matchstickWidth } = gameState;
   const matchsticks = [];
   for (let i = 0; i < matchsticksAmount; i++) {
     matchsticks.push(
@@ -34,7 +34,7 @@ const Matchstick = () => {
     <div className='matchstick'>
       <div className='matchstick-counter'>
         <Typography variant="body2" component="span" align="center">
-          {`x${gameData.matchsticksAmount}`}
+          {`x${matchsticksAmount}`}
         </Typography>
       </div>
       <ul className={classes.matchstickList}>

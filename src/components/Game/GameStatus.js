@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
 
 const GameStatus = () => {
   const classes = useStyles();
-  const { gameData } = useContext(GameContext);
+  const { gameState } = useContext(GameContext);
   let statusText;
 
-  if (gameData.matchsticksAmount !== 0) {
-    statusText = gameData.player === 'user' ? (
+  if (gameState.matchsticksAmount !== 0) {
+    statusText = gameState.player === 'user' ? (
       <Typography className={classes.playerStatus} variant="body1" component="p" align="center">
         Now it is your turn
       </Typography>
@@ -44,7 +44,7 @@ const GameStatus = () => {
       </Typography>
     );
   } else {
-    if (gameData.userScore % 2 === 0) {
+    if (gameState.userScore % 2 === 0) {
       statusText = <Typography className={classes.gameResultWin} variant="h6" component="p" align="center">
         You win
       </Typography>;
@@ -61,11 +61,11 @@ const GameStatus = () => {
       <div className='users-score'>
         <Grid container alignItems="center" className={classes.scoreContainer}>
           <Typography className={classes.score} variant="body1" component="p" align="center">
-            Your score: {gameData.userScore}
+            Your score: {gameState.userScore}
           </Typography>
           <Divider className={classes.divider} orientation="vertical" flexItem />
           <Typography className={classes.score} variant="body1" component="p" align="center">
-            AI score: {gameData.aiScore}
+            AI score: {gameState.aiScore}
           </Typography>
         </Grid>
       </div>

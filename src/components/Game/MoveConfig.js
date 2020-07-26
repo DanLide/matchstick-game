@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import {GameContext} from "../../contexts/GameContext";
-import {incrementDecrementOptions} from "../../utils/incrementDecrementOptions";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import {makeStyles} from "@material-ui/core/styles";
+import {decrementCurrentMove, incrementCurrentMove} from "../../actions/gameActions";
 
 const useStyles = makeStyles((theme) => ({
   counter: {
@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MoveConfig = () => {
   const classes = useStyles();
-  const { gameData, incrementDecrementOption } = useContext(GameContext);
-  const { matchsticksAmount, matchsticksPerMove, matchsticksForCurrentMove, player } = gameData;
+  const { gameState, dispatchGame } = useContext(GameContext);
+  const { matchsticksAmount, matchsticksPerMove, matchsticksForCurrentMove, player } = gameState;
   return (
     <div className='move-config'>
       <Typography className={classes.hint} variant="body1" gutterBottom>
@@ -39,7 +39,7 @@ const MoveConfig = () => {
             <Button
               className={classes.addRemoveButton}
               variant='contained'
-              onClick={() => incrementDecrementOption(incrementDecrementOptions.DECREMENT_CURRENT_MOVE)}>
+              onClick={() => dispatchGame(decrementCurrentMove())}>
               <RemoveIcon />
             </Button>
           </Tooltip>
@@ -58,7 +58,7 @@ const MoveConfig = () => {
             <Button
               className={classes.addRemoveButton}
               variant='contained'
-              onClick={() => incrementDecrementOption(incrementDecrementOptions.INCREMENT_CURRENT_MOVE)}>
+              onClick={() => dispatchGame(incrementCurrentMove())}>
               <AddIcon />
             </Button>
           </Tooltip>

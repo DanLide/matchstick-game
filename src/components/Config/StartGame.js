@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
 import {useHistory} from "react-router-dom";
-import {ConfigContext} from "../../contexts/ConfigContext";
 import {GameContext} from "../../contexts/GameContext";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
+import {loadConfig} from "../../actions/gameActions";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -15,11 +15,10 @@ const useStyles = makeStyles((theme) => ({
 const StartGame = () => {
   const classes = useStyles();
   let history = useHistory();
-  const { config } = useContext(ConfigContext);
-  const { loadConfig } = useContext(GameContext);
+  const { config, dispatchGame, initGameState } = useContext(GameContext);
 
   const startGame = () => {
-    loadConfig(config);
+    dispatchGame(loadConfig(config, initGameState));
     history.push('/start/')
   }
 

@@ -1,8 +1,14 @@
-import React, {createContext, useState} from "react";
-import {incrementDecrementOptions} from "../utils/incrementDecrementOptions";
-import calculateAIMove from "../utils/calculateAIMove";
+import React, {createContext, useReducer} from "react";
+import {gameReducer} from "../reducers/gameReducer";
+import {configReducer} from "../reducers/configReducer";
 
 export const GameContext = createContext();
+
+const initConfig = {
+  firstMove: 'user',
+  n: 0,
+  m: 0,
+}
 
 const initGameState = {
   matchsticksAmount: 0,
@@ -14,57 +20,10 @@ const initGameState = {
 }
 
 const GameContextProvider = (props) => {
-  const [gameData, setGameData] = useState(initGameState);
-  const restoreGameDataToInit = () => {
-    setGameData(initGameState);
-  }
-  const loadConfig = (config) => {
-    setGameData({
-      ...initGameState,
-      matchsticksAmount: 2*config.n + 1,
-      matchsticksPerMove: config.m,
-      matchstickWidth: 150/(2*config.n + 1) > 5 ? 6 : 200/(2*config.n + 1),
-      player: config.firstMove,
-    });
-  }
-  const incrementDecrementOption = (option) => {
-    if (option === incrementDecrementOptions.INCREMENT_CURRENT_MOVE) {
-      setGameData({ ...gameData, matchsticksForCurrentMove: gameData.matchsticksForCurrentMove + 1 });
-    } else {
-      setGameData({ ...gameData, matchsticksForCurrentMove: gameData.matchsticksForCurrentMove - 1 });
-    }
-  }
-  const makeMove = () => {
-    const { matchsticksAmount, matchsticksPerMove, matchsticksForCurrentMove, userScore, aiScore } = gameData;
-    if (gameData.player === 'user') {
-      setGameData({
-        ...gameData,
-        matchsticksAmount: matchsticksAmount - matchsticksForCurrentMove,
-        userScore: userScore + matchsticksForCurrentMove,
-        player: matchsticksAmount - matchsticksForCurrentMove > 0 ? 'ai' : 'user',
-        matchsticksForCurrentMove: 0,
-      });
-    } else {
-      const matchsticksPerMoveForAI = matchsticksAmount > matchsticksPerMove ?
-        matchsticksPerMove : matchsticksAmount;
-      // We want to do AI move in one render, that's why we store matchsticks number as a local variable
-      const matchsticksForAIMove = calculateAIMove(matchsticksAmount, matchsticksPerMoveForAI, aiScore);
-      setGameData({
-        ...gameData,
-        matchsticksAmount: matchsticksAmount - matchsticksForAIMove,
-        aiScore: aiScore + matchsticksForAIMove,
-        player: 'user',
-        matchsticksForCurrentMove: 0,
-      });
-    }
-  }
+  const [config, dispatchConfig] = useReducer(configReducer, initConfig);
+  const [gameState, dispatchGame] = useReducer(gameReducer, initGameState);
   return (
-    <GameContext.Provider value={{
-      gameData,
-      loadConfig,
-      restoreGameDataToInit,
-      incrementDecrementOption,
-      makeMove }}>
+    <GameContext.Provider value={{ config, dispatchConfig, initConfig, gameState, dispatchGame, initGameState }}>
       {props.children}
     </GameContext.Provider>
   );
